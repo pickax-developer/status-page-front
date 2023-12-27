@@ -1,5 +1,5 @@
 {
   "plugins": ["import", "react"],
-  "extends": ["plugin:import/recommended", "plugin:react/recommended","plugin:react/jsx-runtime"]
+  "extends": ["plugin:import/recommended", "plugin:react/recommended","plugin:react/jsx-runtime","prettier"]
   
 }
