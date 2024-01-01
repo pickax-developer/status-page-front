@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <footer className="p-10 footer bg-neutral text-neutral-content">
+    <footer className="p-10 footer">
       <aside>
         <p>@pickax-developer since 2023</p>
       </aside>

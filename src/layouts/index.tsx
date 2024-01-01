@@ -6,13 +6,18 @@ import Sidebar from '../components/Sidebar.tsx'
 import Header from '../components/Header.tsx'
 
 const Layout = () => {
+
   return (
     <>
-      <Header />
-      <main className="flex">
+      <div className="flex">
         <Sidebar />
-        <Outlet />
-      </main>
+        <div className="w-full">
+          <Header />
+          <main className="p-10 bg-secondary">
+            <Outlet />
+          </main>
+        </div>
+      </div>
       <Footer />
     </>
   )

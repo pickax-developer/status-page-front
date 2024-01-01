@@ -2,7 +2,7 @@ import React from 'react'
 
 const Sidebar = () => {
   return (
-    <ul className="w-56 menu bg-base-200 rounded-box">
+    <ul className="w-56 menu bg-primary ">
       <li>
         <a>
           <svg
