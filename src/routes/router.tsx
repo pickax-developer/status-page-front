@@ -4,6 +4,7 @@ import Layout from '../layouts/index.tsx'
 import SiteDetail from '../pages/SiteDetail.tsx'
 import Login from '../pages/Login.tsx'
 import ErrorPage from '../pages/Error.tsx'
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -23,3 +24,5 @@ const router = createBrowserRouter([
 ])
 
 export default router
+
+
