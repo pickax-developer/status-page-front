@@ -1,28 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { SiteListResponse } from '../types/response/site.ts'
+import useSiteList from './useSiteList.ts'
 
-const dummySiteList: SiteListResponse[] = [
-  {
-    id: 1,
-    name: '네이버',
-    url: 'https://naver.com',
-    ownerProofState: 'DONE',
-  },
-  {
-    id: 2,
-    name: '다음',
-    url: 'https://daum.net',
-    ownerProofState: 'NOT_YET',
-  },
-  {
-    id: 3,
-    name: '구글',
-    url: 'https://google.com',
-    ownerProofState: 'DONE',
-  },
-]
 const SiteList = () => {
+  const { data, error, isLoading } = useSiteList()
+
+  if (error) return <div>failed to load</div>
+  if (isLoading) return <div>loading...</div>
+
   return (
     <div>
       <div className="overflow-x-auto">
@@ -36,7 +21,7 @@ const SiteList = () => {
             </tr>
           </thead>
           <tbody>
-            {dummySiteList.map((site) => (
+            {data.map((site) => (
               <tr className="bg-base-200" key={site.id}>
                 <td>
                   <Link to={`/${site.id}`} key={site.id}>
