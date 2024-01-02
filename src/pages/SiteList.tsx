@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import useSiteList from './useSiteList.ts'
 import SiteRegisterDialog from '../components/SiteRegisterDialog.tsx'
+import getUserList from '../useCases/siteListUseCase.ts'
 
 const SiteList = () => {
-  const { data, error, isLoading } = useSiteList()
+  const { data, error, isLoading } = getUserList()
 
   if (error) return <div>failed to load</div>
   if (isLoading) return <div>loading...</div>
