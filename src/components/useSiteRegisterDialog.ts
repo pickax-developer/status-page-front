@@ -55,6 +55,15 @@ const useSiteRegisterDialog = () => {
       console.log(e)
     }
   }
+
+  const onCloseModal = () => {
+    setDescription('')
+    setMetaTag('')
+    setName('')
+    setUrl('')
+    setStep(1)
+    ;(document.getElementById('site_register_dialog') as HTMLDialogElement)?.close()
+  }
   return {
     name,
     url,
@@ -68,6 +77,7 @@ const useSiteRegisterDialog = () => {
     copyMetaTag,
     step,
     setStep,
+    onCloseModal,
   }
 }
 

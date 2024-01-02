@@ -15,6 +15,7 @@ const SiteRegisterDialog = () => {
     onClickCheckButton,
     step,
     setStep,
+    onCloseModal,
   } = useSiteRegisterDialog()
 
   if (!metaTag || step === 1)
@@ -59,10 +60,16 @@ const SiteRegisterDialog = () => {
               ></textarea>
             </label>
           </form>
+
           <div className="modal-action">
-            <form method="dialog">
-              <button className="btn">취소</button>
-            </form>
+            <button
+              className="btn"
+              onClick={() => {
+                onCloseModal()
+              }}
+            >
+              취소
+            </button>
             <button onClick={() => onClickNextButton()} className="btn btn-primary" type="button">
               다음 단계로
             </button>
@@ -113,11 +120,14 @@ const SiteRegisterDialog = () => {
 
           <p>확인된 상태를 유지하려면 사이트에서 태그를 제거하지 마세요</p>
 
-          <div className="modal-action">
-            <form method="dialog">
-              <button className="btn">완료</button>
-            </form>
-          </div>
+          <button
+            className="btn"
+            onClick={() => {
+              onCloseModal()
+            }}
+          >
+            완료
+          </button>
         </div>
       </dialog>
     )
@@ -139,9 +149,14 @@ const SiteRegisterDialog = () => {
             >
               뒤로
             </button>
-            <form method="dialog">
-              <button className="btn">닫기</button>
-            </form>
+            <button
+              className="btn"
+              onClick={() => {
+                onCloseModal()
+              }}
+            >
+              닫기
+            </button>
           </div>
         </div>
       </dialog>
