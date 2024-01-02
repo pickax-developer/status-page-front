@@ -3,6 +3,8 @@ export interface SiteListResponse {
   name: string
   url: string
   ownerProofState: string
-  // createdAt: string;
-  // updatedAt: string;
+}
+
+export interface SitePostResponse {
+  metaTag: string
 }

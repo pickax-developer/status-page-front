@@ -24,7 +24,7 @@ const dummySiteList: SiteListResponse[] = [
 
 const useSiteList = () => {
   const fetcher = (...args) => fetch(...args).then((res) => res.json())
-  const { data, error, isLoading } = useSWR('https://dummy.restapiexample.com/api/v1/employees', fetcher)
+  // const { data, error, isLoading } = useSWR('', fetcher)
   return {
     data: dummySiteList,
     error: false,

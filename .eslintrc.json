@@ -1,5 +1,5 @@
 {
-  "parser": "babel-parser",
+  "parser": "@typescript-eslint/parser",
   "plugins": ["import", "react"],
   "extends": ["plugin:import/recommended", "plugin:react/recommended", "plugin:react/jsx-runtime", "prettier"]
 }
