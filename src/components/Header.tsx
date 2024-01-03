@@ -3,7 +3,7 @@ import SiteRegisterButton from './SiteRegisterButton.tsx'
 
 const Header = () => {
   return (
-    <header className="flex justify-between navbar">
+    <header className="flex justify-between navbar bg-secondary">
       <button className="text-xl btn btn-ghost">Quack Run</button>
       <SiteRegisterButton />
     </header>

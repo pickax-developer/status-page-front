@@ -51,6 +51,7 @@ const useSiteRegisterDialog = ({ id }: { id?: number }) => {
   useEffect(() => {
     setAlertMessage('')
   }, [])
+  
   useEffect(() => {
     setIsDisabledNextBtn(name.length === 0 || !isValidURL(url))
   }, [name, url])

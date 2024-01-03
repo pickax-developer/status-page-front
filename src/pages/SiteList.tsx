@@ -12,47 +12,45 @@ const SiteList = () => {
 
   return (
     <>
-      <div>
-        <div className="overflow-x-auto">
-          <table className="table">
-            <thead>
-              <tr>
-                <th></th>
-                <th>이름</th>
-                <th>URL</th>
-                <th>소유권 증명</th>
+      <div className="overflow-x-auto min-h-full rounded-md">
+        <table className="table">
+          <thead className="bg-primary text-black">
+            <tr>
+              <th></th>
+              <th>이름</th>
+              <th>URL</th>
+              <th>소유권 증명</th>
+            </tr>
+          </thead>
+          <tbody className="rounded-md">
+            {data.map((site) => (
+              <tr className="bg-base-200" key={site.id}>
+                <td>
+                  <Link to={`/${site.id}`} key={site.id}>
+                    {site.id}
+                  </Link>
+                </td>
+                <td>{site.name}</td>
+                <td>{site.url}</td>
+                <td>
+                  {site.ownerProofState === OwnerProofStatus.UNVERIFIED ? (
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => {
+                        setCurrentSiteId(site.id)
+                        ;(document.getElementById('site_register_dialog') as HTMLDialogElement)?.showModal()
+                      }}
+                    >
+                      소유권 증명
+                    </button>
+                  ) : (
+                    <div className="badge badge-primary badge-outline">{site.ownerProofState}</div>
+                  )}
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {data.map((site) => (
-                <tr className="bg-base-200" key={site.id}>
-                  <td>
-                    <Link to={`/${site.id}`} key={site.id}>
-                      {site.id}
-                    </Link>
-                  </td>
-                  <td>{site.name}</td>
-                  <td>{site.url}</td>
-                  <td>
-                    {site.ownerProofState === OwnerProofStatus.UNVERIFIED ? (
-                      <button
-                        className="btn btn-primary"
-                        onClick={() => {
-                          setCurrentSiteId(site.id)
-                          ;(document.getElementById('site_register_dialog') as HTMLDialogElement)?.showModal()
-                        }}
-                      >
-                        소유권 증명
-                      </button>
-                    ) : (
-                      <div className="badge badge-primary badge-outline">{site.ownerProofState}</div>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
       </div>
       <SiteRegisterDialog id={currentSiteId} />
     </>

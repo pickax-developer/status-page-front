@@ -9,11 +9,11 @@ const Layout = () => {
 
   return (
     <>
-      <div className="flex">
+      <div className="h-full flex">
         <Sidebar />
-        <div className="w-full">
+        <div className="w-full h-full bg-white">
           <Header />
-          <main className="p-10 bg-secondary">
+          <main className="p-10">
             <Outlet />
           </main>
         </div>

@@ -101,11 +101,11 @@ const SiteRegisterDialog = ({ id }: { id?: number }) => {
       <dialog id="site_register_dialog" className="modal">
         <div className="modal-box">
           <h3 className="text-lg font-bold">사이트 소유 확인</h3>
-          <p>사이트 : {url}</p>
-          <p>{`아래 메타 태그를 복사하여 사이트 홈페이지 첫번째 <body> 영역 상단의 <head> 태그 안에 붙여넣어주세요`}</p>
-          <div className="flex">
+          <p className="text-sm">{url}</p>
+          <p className="text-xs py-4">{`아래 메타 태그를 복사하여 사이트 홈페이지 첫번째 <body> 영역 상단의 <head> 태그 안에 붙여넣어주세요`}</p>
+          <div className="flex pt-4 gap-3 w-full">
             <input
-              className="bg-gray-100 p-2"
+              className="bg-gray-100 p-2 rounded-sm w-full"
               disabled
               value={`<meta name="quack-run-site-verification" content="${metaTag}">`}
             ></input>
@@ -113,18 +113,19 @@ const SiteRegisterDialog = ({ id }: { id?: number }) => {
               복사
             </button>
           </div>
-
-          <button
-            className="btn"
-            onClick={() => {
-              setStep(1)
-            }}
-          >
-            뒤로
-          </button>
-          <button onClick={() => onClickCheckButton()} className="btn btn-primary" type="button">
-            확인
-          </button>
+          <div className="flex pt-4 gap-3 justify-end">
+            <button
+              className="btn"
+              onClick={() => {
+                setStep(1)
+              }}
+            >
+              뒤로
+            </button>
+            <button onClick={() => onClickCheckButton()} className="btn btn-primary" type="button">
+              확인
+            </button>
+          </div>
         </div>
       </dialog>
     )
@@ -160,20 +161,20 @@ const SiteRegisterDialog = ({ id }: { id?: number }) => {
 
           <div className="modal-action">
             <button
-              className="btn btn-secondary"
-              onClick={() => {
-                setStep(2)
-              }}
-            >
-              뒤로
-            </button>
-            <button
               className="btn"
               onClick={() => {
                 onCloseModal()
               }}
             >
               닫기
+            </button>
+            <button
+              className="btn btn-secondary"
+              onClick={() => {
+                setStep(2)
+              }}
+            >
+              뒤로
             </button>
           </div>
         </div>
