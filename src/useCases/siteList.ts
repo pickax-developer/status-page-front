@@ -24,11 +24,11 @@ const dummySiteList: SiteListResponse[] = [
 
 const useSiteList = () => {
   const fetcher = (...args) => fetch(...args).then((res) => res.json())
-  // const { data, error, isLoading } = useSWR('http://localhost:3306/sites', fetcher)
+  const { data, error, isLoading } = useSWR('http://localhost:8080/sites', fetcher)
   return {
-    data: dummySiteList,
-    error: false,
-    isLoading: null,
+    data,
+    error,
+    isLoading,
   }
 }
 

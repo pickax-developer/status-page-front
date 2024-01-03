@@ -4,7 +4,7 @@ import { SitePostResponse } from '../types/response/site.ts'
 
 const postSite = async ({ name, url, description }: SitePostRequest): Promise<SitePostResponse> => {
   try {
-    const response = await axios.post('http://localhost:3306/sites', {
+    const response = await axios.post('http://localhost:8080/sites', {
       name,
       url,
       description,
