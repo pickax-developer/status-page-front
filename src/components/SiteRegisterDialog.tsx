@@ -1,7 +1,8 @@
 import React from 'react'
 import useSiteRegisterDialog from './useSiteRegisterDialog.ts'
 
-const SiteRegisterDialog = () => {
+
+const SiteRegisterDialog = ({ id }: { id?: number }) => {
   const {
     metaTag,
     name,
@@ -16,66 +17,83 @@ const SiteRegisterDialog = () => {
     step,
     setStep,
     onCloseModal,
-  } = useSiteRegisterDialog()
+    alertMessage,
+    isDisabledNextBtn,
+  } = useSiteRegisterDialog({ id: id ? id : undefined })
 
   if (!metaTag || step === 1)
     return (
-      <dialog id="site_register_dialog" className="modal">
-        <div className="modal-box">
-          <h3 className="text-lg font-bold">사이트 등록</h3>
-          <form action="">
-            <label className="w-full form-control">
-              <div className="label">
-                <span className="label-text">사이트 이름</span>
-              </div>
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="quack run"
-                className="w-full input input-bordered"
-              />
-            </label>
-            <label className="w-full form-control">
-              <div className="label">
-                <span className="label-text">URL</span>
-              </div>
-              <input
-                type="text"
-                value={url}
-                onChange={(e) => setUrl(e.target.value)}
-                placeholder="https://quack.run"
-                className="w-full input input-bordered"
-              />
-            </label>
-            <label className="w-full form-control">
-              <div className="label">
-                <span className="label-text">설명</span>
-              </div>
-              <textarea
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                className="textarea textarea-bordered"
-                placeholder="사이트를 모니터링하고 알림을 보내주는 서비스입니다. "
-              ></textarea>
-            </label>
-          </form>
+      <>
+        <dialog id="site_register_dialog" className="modal">
+          <div className="modal-box">
+            <h3 className="text-lg font-bold">사이트 등록</h3>
+            <form action="">
+              <label className="w-full form-control">
+                <div className="label">
+                  <span className="label-text">사이트 이름</span>
+                </div>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="quack run"
+                  className="w-full input input-bordered"
+                />
+              </label>
+              <label className="w-full form-control">
+                <div className="label">
+                  <span className="label-text">URL</span>
+                </div>
+                <input
+                  type="text"
+                  value={url}
+                  onChange={(e) => setUrl(e.target.value)}
+                  placeholder="https://quack.run"
+                  className="w-full input input-bordered"
+                />
+              </label>
+              <label className="w-full form-control">
+                <div className="label">
+                  <span className="label-text">설명</span>
+                </div>
+                <textarea
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  className="textarea textarea-bordered"
+                  placeholder="사이트를 모니터링하고 알림을 보내주는 서비스입니다. "
+                ></textarea>
+              </label>
+            </form>
 
-          <div className="modal-action">
-            <button
-              className="btn"
-              onClick={() => {
-                onCloseModal()
-              }}
-            >
-              취소
-            </button>
-            <button onClick={() => onClickNextButton()} className="btn btn-primary" type="button">
-              다음 단계로
-            </button>
+            <div className="modal-action">
+              <button
+                className="btn"
+                onClick={() => {
+                  onCloseModal()
+                }}
+              >
+                취소
+              </button>
+              <button
+                disabled={isDisabledNextBtn}
+                onClick={() => onClickNextButton()}
+                className="btn btn-primary"
+                type="button"
+              >
+                다음 단계로
+              </button>
+            </div>
           </div>
-        </div>
-      </dialog>
+        </dialog>
+
+        {alertMessage && (
+          <div className="toast">
+            <div className="alert alert-error">
+              <span>{alertMessage}</span>
+            </div>
+          </div>
+        )}
+      </>
     )
 
   if (step === 2) {
@@ -89,7 +107,7 @@ const SiteRegisterDialog = () => {
             <input
               className="bg-gray-100 p-2"
               disabled
-              value={`<meta name="quack-run-site-verification" content="${String(copyMetaTag)}">`}
+              value={`<meta name="quack-run-site-verification" content="${metaTag}">`}
             ></input>
             <button className="btn btn-outline" onClick={() => copyMetaTag()}>
               복사
@@ -102,7 +120,7 @@ const SiteRegisterDialog = () => {
               setStep(1)
             }}
           >
-            취소
+            뒤로
           </button>
           <button onClick={() => onClickCheckButton()} className="btn btn-primary" type="button">
             확인
@@ -138,7 +156,7 @@ const SiteRegisterDialog = () => {
         <div className="modal-box">
           <h3 className="text-lg font-bold">사이트 소유권을 확인하지 못했습니다.</h3>
 
-          <p>사이트 head 영역에 넣어주세요~ </p>
+          <p>다시 한번 확인해주시고, 잠시 후 시도해주세요.</p>
 
           <div className="modal-action">
             <button

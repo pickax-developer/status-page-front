@@ -1,11 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import SiteRegisterDialog from '../components/SiteRegisterDialog.tsx'
-import getUserList from '../useCases/siteListUseCase.ts'
+import getUserList from '../useCases/siteList.ts'
+import { OwnerProofStatus } from '../types/response/site.ts'
 
 const SiteList = () => {
   const { data, error, isLoading } = getUserList()
-
+  const [currentSiteId, setCurrentSiteId] = React.useState<number | undefined>(undefined)
   if (error) return <div>failed to load</div>
   if (isLoading) return <div>loading...</div>
 
@@ -32,14 +33,28 @@ const SiteList = () => {
                   </td>
                   <td>{site.name}</td>
                   <td>{site.url}</td>
-                  <td>{site.ownerProofState}</td>
+                  <td>
+                    {site.ownerProofState === OwnerProofStatus.UNVERIFIED ? (
+                      <button
+                        className="btn btn-primary"
+                        onClick={() => {
+                          setCurrentSiteId(site.id)
+                          ;(document.getElementById('site_register_dialog') as HTMLDialogElement)?.showModal()
+                        }}
+                      >
+                        소유권 증명
+                      </button>
+                    ) : (
+                      <div className="badge badge-primary badge-outline">{site.ownerProofState}</div>
+                    )}
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       </div>
-      <SiteRegisterDialog />
+      <SiteRegisterDialog id={currentSiteId} />
     </>
   )
 }

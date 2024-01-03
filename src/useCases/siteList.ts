@@ -1,30 +1,30 @@
 import useSWR from 'swr'
-import { SiteListResponse } from '../types/response/site.ts'
+import { OwnerProofStatus, SiteListResponse } from '../types/response/site.ts'
 
 const dummySiteList: SiteListResponse[] = [
   {
     id: 1,
     name: '네이버',
     url: 'https://naver.com',
-    ownerProofState: 'DONE',
+    ownerProofState: OwnerProofStatus.CANCELED,
   },
   {
     id: 2,
     name: '다음',
     url: 'https://daum.net',
-    ownerProofState: 'NOT_YET',
+    ownerProofState: OwnerProofStatus.COMPLETED,
   },
   {
     id: 3,
     name: '구글',
     url: 'https://google.com',
-    ownerProofState: 'DONE',
+    ownerProofState: OwnerProofStatus.UNVERIFIED,
   },
 ]
 
 const useSiteList = () => {
   const fetcher = (...args) => fetch(...args).then((res) => res.json())
-  // const { data, error, isLoading } = useSWR('', fetcher)
+  // const { data, error, isLoading } = useSWR('http://localhost:3306/sites', fetcher)
   return {
     data: dummySiteList,
     error: false,
