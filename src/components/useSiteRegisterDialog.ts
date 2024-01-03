@@ -8,7 +8,7 @@ const useSiteRegisterDialog = ({ id }: { id?: number }) => {
   const [name, setName] = useState<string>('')
   const [url, setUrl] = useState<string>('')
   const [description, setDescription] = useState<string>('')
-
+  const [resId, setResId] = useState<number>(0)
   const [metaTag, setMetaTag] = useState<string>('')
   const [step, setStep] = useState<number>(1)
   const [alertMessage, setAlertMessage] = useState<string>('')
@@ -18,6 +18,7 @@ const useSiteRegisterDialog = ({ id }: { id?: number }) => {
     try {
       const res = await postSite({ name, url, description })
       setMetaTag(res.metaTag)
+      setResId(res.id)
       setStep(2)
       setAlertMessage('')
     } catch {
@@ -27,7 +28,7 @@ const useSiteRegisterDialog = ({ id }: { id?: number }) => {
 
   const onClickCheckButton = async () => {
     try {
-      await siteCheck({ id: 1 })
+      await siteCheck({ id: resId })
       setStep(3)
     } catch {
       setStep(4)
@@ -51,7 +52,7 @@ const useSiteRegisterDialog = ({ id }: { id?: number }) => {
   useEffect(() => {
     setAlertMessage('')
   }, [])
-  
+
   useEffect(() => {
     setIsDisabledNextBtn(name.length === 0 || !isValidURL(url))
   }, [name, url])
@@ -70,6 +71,7 @@ const useSiteRegisterDialog = ({ id }: { id?: number }) => {
       }
     }
     if (id) {
+      setResId(id)
       fetchData()
     }
   }, [id])

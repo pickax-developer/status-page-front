@@ -23,6 +23,7 @@ const SiteList = () => {
             </tr>
           </thead>
           <tbody className="rounded-md">
+            {data.length === 0 && <tr> 없어요 </tr>}
             {data.map((site) => (
               <tr className="bg-base-200" key={site.id}>
                 <td>
@@ -33,7 +34,7 @@ const SiteList = () => {
                 <td>{site.name}</td>
                 <td>{site.url}</td>
                 <td>
-                  {site.ownerProofState === OwnerProofStatus.UNVERIFIED ? (
+                  {site.ownerProofStatus === OwnerProofStatus.UNVERIFIED ? (
                     <button
                       className="btn btn-primary"
                       onClick={() => {
@@ -44,7 +45,7 @@ const SiteList = () => {
                       소유권 증명
                     </button>
                   ) : (
-                    <div className="badge badge-primary badge-outline">{site.ownerProofState}</div>
+                    <div className="badge badge-primary badge-outline">{site.ownerProofStatus}</div>
                   )}
                 </td>
               </tr>

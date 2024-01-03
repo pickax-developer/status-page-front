@@ -11,8 +11,8 @@ const postSite = async ({ name, url, description }: SitePostRequest): Promise<Si
     })
     return response.data
   } catch (error) {
-    return { metaTag: '1234567890', id: 1 }
-    // throw error
+    // return { metaTag: '1234567890', id: 1 }
+    throw error
   }
 }
 
