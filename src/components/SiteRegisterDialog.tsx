@@ -107,7 +107,7 @@ const SiteRegisterDialog = ({ id }: { id?: number }) => {
             <input
               className="bg-gray-100 p-2 rounded-sm w-full"
               disabled
-              value={`<meta name="quack-run-site-verification" content="${metaTag}">`}
+              value={`<meta name="quack-run-service-verification" content="${metaTag}">`}
             ></input>
             <button className="btn btn-outline" onClick={() => copyMetaTag()}>
               복사

@@ -36,7 +36,7 @@ const useSiteRegisterDialog = ({ id }: { id?: number }) => {
   }
 
   const copyMetaTag = () => {
-    navigator.clipboard.writeText(`<meta name="quack-run-site-verification" content="${metaTag}">`)
+    navigator.clipboard.writeText(`<meta name="quack-run-service-verification" content="${metaTag}">`)
   }
 
   const onCloseModal = () => {
