@@ -1,5 +1,6 @@
 import useSWR from 'swr'
 import { OwnerProofStatus, SiteListResponse } from '../types/response/site.ts'
+import { BASE_URL } from '../common/api.js'
 
 const dummySiteList: SiteListResponse[] = [
   {
@@ -24,7 +25,7 @@ const dummySiteList: SiteListResponse[] = [
 
 const useSiteList = () => {
   const fetcher = (...args) => fetch(...args).then((res) => res.json())
-  const { data, error, isLoading } = useSWR('http://localhost:8080/sites', fetcher)
+  const { data, error, isLoading } = useSWR(`${BASE_URL}/sites`, fetcher)
   // return {
   //   data: dummySiteList,
   //   error: false,

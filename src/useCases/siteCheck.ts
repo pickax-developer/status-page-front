@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const siteCheck = async ({ id }: { id: number }) => {
   try {
-    const response = await axios.post(`http://localhost:8080/sites/${id}/verify`)
+    const response = await axios.post(`/sites/${id}/verify`)
     return response.data
   } catch (error) {
     throw error
