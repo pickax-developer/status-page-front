@@ -1,9 +1,11 @@
 import React from 'react'
+import SiteRegisterButton from './SiteRegisterButton.tsx'
 
 const Header = () => {
   return (
-    <header className="navbar">
+    <header className="flex justify-between navbar bg-secondary">
       <button className="text-xl btn btn-ghost">Quack Run</button>
+      <SiteRegisterButton />
     </header>
   )
 }
