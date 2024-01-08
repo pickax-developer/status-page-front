@@ -4,19 +4,10 @@ import useComponentRegisterDialog from './useComponentRegisterDialog.ts'
 const ComponentRegisterDialog = ({ siteId }: { siteId?: string }) => {
   if (!siteId) return null
 
-  const {
-    name,
-    setName,
-    description,
-    setDescription,
-    isDisabledConfirmBtn,
-    onCloseModal,
-    onClickConfirmButton,
-    alertMessage,
-  } = useComponentRegisterDialog({ siteId })
+  const { name, setName, description, setDescription, isDisabledConfirmBtn, onCloseModal, onClickConfirmButton } =
+    useComponentRegisterDialog({ siteId })
 
   return (
-    <>
       <dialog id="component_register_dialog" className="modal">
         <div className="modal-box">
           <h3 className="font-bold text-lg">컴포넌트 등록</h3>
@@ -60,14 +51,6 @@ const ComponentRegisterDialog = ({ siteId }: { siteId?: string }) => {
           </form>
         </div>
       </dialog>
-      {alertMessage && (
-        <div className="toast">
-          <div className="alert alert-error">
-            <span>{alertMessage}</span>
-          </div>
-        </div>
-      )}
-    </>
   )
 }
 export default ComponentRegisterDialog

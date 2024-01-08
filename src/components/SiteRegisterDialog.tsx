@@ -17,13 +17,11 @@ const SiteRegisterDialog = ({ id }: { id?: number }) => {
     step,
     setStep,
     onCloseModal,
-    alertMessage,
     isDisabledNextBtn,
   } = useSiteRegisterDialog({ id: id ? id : undefined })
 
   if (!metaTag || step === 1)
     return (
-      <>
         <dialog id="site_register_dialog" className="modal">
           <div className="modal-box">
             <h3 className="text-lg font-bold">사이트 등록</h3>
@@ -85,15 +83,6 @@ const SiteRegisterDialog = ({ id }: { id?: number }) => {
             </div>
           </div>
         </dialog>
-
-        {alertMessage && (
-          <div className="toast">
-            <div className="alert alert-error">
-              <span>{alertMessage}</span>
-            </div>
-          </div>
-        )}
-      </>
     )
 
   if (step === 2) {
