@@ -1,6 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import useComponentList from '../useCases/componentList.ts'
+import ComponentRegisterDialog from '../components/ComponentRegisterDialog.tsx'
 
 export default function SiteDetail() {
   const { siteId } = useParams<{ siteId: string }>()
@@ -36,6 +37,7 @@ export default function SiteDetail() {
           </tbody>
         </table>
       </div>
+      <ComponentRegisterDialog siteId={siteId} />
     </>
   )
 }
