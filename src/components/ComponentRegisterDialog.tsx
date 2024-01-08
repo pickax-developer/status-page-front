@@ -1,7 +1,9 @@
 import React from 'react'
 import useComponentRegisterDialog from './useComponentRegisterDialog.ts'
 
-const ComponentRegisterDialog = ({ siteId }: { siteId: number }) => {
+const ComponentRegisterDialog = ({ siteId }: { siteId?: string }) => {
+  if (!siteId) return null
+
   const {
     name,
     setName,

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import postComponent from '../useCases/postComponent.ts'
 
-const useComponentRegisterDialog = ({ siteId }: { siteId: number }) => {
+const useComponentRegisterDialog = ({ siteId }: { siteId: string }) => {
   const [name, setName] = useState<string>('')
   const [description, setDescription] = useState<string>('')
 

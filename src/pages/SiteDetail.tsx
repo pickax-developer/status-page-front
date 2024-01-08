@@ -25,7 +25,7 @@ export default function SiteDetail() {
           <tbody className="rounded-md">
             {data.length === 0 && <tr> 컴포넌트가 아직 없어요 </tr>}
             {data.map((component) => (
-              <tr className="bg-base-200" key={component.id}>
+              <tr className="bg-secondary text-black" key={component.id}>
                 <td>{component.id}</td>
                 <td>{component.name}</td>
                 <td>{component.description}</td>
