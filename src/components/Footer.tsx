@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <footer className="p-10 footer">
+    <footer className="footer p-3 relative translate-y-[-100%] bg-slate-100 ">
       <aside>
         <p>@pickax-developer since 2023</p>
       </aside>
