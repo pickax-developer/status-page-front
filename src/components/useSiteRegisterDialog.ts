@@ -67,9 +67,12 @@ const useSiteRegisterDialog = ({ id }: { id?: number }) => {
         } catch {
           ;(document.getElementById('site_register_dialog') as HTMLDialogElement)?.close()
           setAlertMessage('사이트 메타 태그 정보 불러오기에 실패했습니다. 다시 시도해주세요.')
+          //TODO: 새 메타 태그 정보 발급받기 api 호출
         }
       }
     }
+
+
     if (id) {
       setResId(id)
       fetchData()
