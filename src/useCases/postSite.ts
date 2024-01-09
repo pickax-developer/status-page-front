@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { SitePostRequest } from '../types/request/site.ts'
 import { SitePostResponse } from '../types/response/site.ts'
 // eslint-disable-next-line import/no-unresolved

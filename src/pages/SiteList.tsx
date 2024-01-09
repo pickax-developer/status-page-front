@@ -25,7 +25,7 @@ const SiteList = () => {
           <tbody className="rounded-md">
             {data.length === 0 && <tr> 없어요 </tr>}
             {data.map((site) => (
-              <tr className="bg-base-200" key={site.id}>
+              <tr className="bg-secondary text-black" key={site.id}>
                 <td>
                   <Link to={`/${site.id}`} key={site.id}>
                     {site.id}
