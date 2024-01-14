@@ -22,67 +22,67 @@ const SiteRegisterDialog = ({ id }: { id?: number }) => {
 
   if (!metaTag || step === 1)
     return (
-        <dialog id="site_register_dialog" className="modal">
-          <div className="modal-box">
-            <h3 className="text-lg font-bold">사이트 등록</h3>
-            <form action="">
-              <label className="w-full form-control">
-                <div className="label">
-                  <span className="label-text">사이트 이름</span>
-                </div>
-                <input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="quack run"
-                  className="w-full input input-bordered"
-                />
-              </label>
-              <label className="w-full form-control">
-                <div className="label">
-                  <span className="label-text">URL</span>
-                </div>
-                <input
-                  type="text"
-                  value={url}
-                  onChange={(e) => setUrl(e.target.value)}
-                  placeholder="https://quack.run"
-                  className="w-full input input-bordered"
-                />
-              </label>
-              <label className="w-full form-control">
-                <div className="label">
-                  <span className="label-text">설명</span>
-                </div>
-                <textarea
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                  className="textarea textarea-bordered"
-                  placeholder="사이트를 모니터링하고 알림을 보내주는 서비스입니다. "
-                ></textarea>
-              </label>
-            </form>
+      <dialog id="site_register_dialog" className="modal">
+        <div className="modal-box">
+          <h3 className="text-lg font-bold">사이트 등록</h3>
+          <form action="">
+            <label className="w-full form-control">
+              <div className="label">
+                <span className="label-text">사이트 이름</span>
+              </div>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="quack run"
+                className="w-full input input-bordered"
+              />
+            </label>
+            <label className="w-full form-control">
+              <div className="label">
+                <span className="label-text">URL</span>
+              </div>
+              <input
+                type="text"
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+                placeholder="https://quack.run"
+                className="w-full input input-bordered"
+              />
+            </label>
+            <label className="w-full form-control">
+              <div className="label">
+                <span className="label-text">설명</span>
+              </div>
+              <textarea
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                className="textarea textarea-bordered"
+                placeholder="사이트를 모니터링하고 알림을 보내주는 서비스입니다. "
+              ></textarea>
+            </label>
+          </form>
 
-            <div className="modal-action">
-              <button
-                className="btn"
-                onClick={() => {
-                  onCloseModal()
-                }}
-              >
-                취소
-              </button>
-              <button
-                disabled={isDisabledNextBtn}
-                onClick={() => onClickNextButton()}
-                className="btn btn-primary"
-                type="button"
-              >
-                다음 단계로
-              </button>
-            </div>
+          <div className="modal-action">
+            <button
+              className="btn"
+              onClick={() => {
+                onCloseModal()
+              }}
+            >
+              취소
+            </button>
+            <button
+              disabled={isDisabledNextBtn}
+              onClick={() => onClickNextButton()}
+              className="btn btn-primary"
+              type="button"
+            >
+              다음 단계로
+            </button>
           </div>
-        </dialog>
+        </div>
+      </dialog>
     )
 
   if (step === 2) {
