@@ -1,8 +1,8 @@
-import axios from 'axios'
+import axiosInstance from '../common/axiosInstance.js'
 
 const siteCheck = async ({ id }: { id: number }) => {
   try {
-    const response = await axios.post(`/sites/${id}/verify`)
+    const response = await axiosInstance.post(`/sites/${id}/verify`)
     return response.data
   } catch (error) {
     throw error
