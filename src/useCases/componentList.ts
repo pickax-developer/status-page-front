@@ -25,18 +25,18 @@ const dummyComponentList: ComponentListResponse[] = [
 
 const useComponentList = ({ siteId }: { siteId?: string }) => {
   const fetcher = (...args) => fetch(...args).then((res) => res.json())
-  const { data, error, isLoading } = useSWR(`${BASE_URL}/sites/${siteId}`, fetcher)
-  return {
-    data: dummyComponentList,
-    error: false,
-    isLoading: false,
-  }
-
+  const { data, error, isLoading } = useSWR(`${BASE_URL}/sites/${siteId}/components/active`, fetcher)
   // return {
-  //   data,
-  //   error,
-  //   isLoading,
+  //   data: dummyComponentList,
+  //   error: false,
+  //   isLoading: false,
   // }
+
+  return {
+    data: data?.componentResponseDtoList,
+    error,
+    isLoading,
+  }
 }
 
 export default useComponentList
