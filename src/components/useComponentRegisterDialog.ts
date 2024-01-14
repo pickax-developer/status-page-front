@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react'
 import postComponent from '../useCases/postComponent.ts'
  import { toast } from 'react-toastify'
+
 const useComponentRegisterDialog = ({ siteId }: { siteId: string }) => {
+  const DEFAULT_FREQUENCY = 1800
+
   const [name, setName] = useState<string>('')
   const [description, setDescription] = useState<string>('')
-  //TODO: frequency, isActive 설정 (수정? 생성 시?)
-  const [frequency, setFrequency] = useState<number>(5000)
+  const [frequency, setFrequency] = useState<number>(DEFAULT_FREQUENCY)
+  const [frequencyMessage, setFrequencyMessage] = useState<string>('')
   const [isActive, setIsActive] = useState<boolean>(false)
 
   const [isDisabledConfirmBtn, setIsDisabledConfirmBtn] = useState<boolean>(true)
@@ -28,6 +31,16 @@ const useComponentRegisterDialog = ({ siteId }: { siteId: string }) => {
     }
   }
 
+  useEffect(() => {
+    if (frequency < 30) {
+      setFrequencyMessage('30초 이상으로 설정해주세요.')
+      setIsDisabledConfirmBtn(true)
+    } else {
+      setFrequencyMessage('')
+      setIsDisabledConfirmBtn(name.length === 0)
+    }
+  }, [frequency])
+
   return {
     name,
     setName,
@@ -36,6 +49,11 @@ const useComponentRegisterDialog = ({ siteId }: { siteId: string }) => {
     isDisabledConfirmBtn,
     onCloseModal,
     onClickConfirmButton,
+    frequency,
+    setFrequency,
+    isActive,
+    setIsActive,
+    frequencyMessage,
   }
 }
 
