@@ -1,29 +1,25 @@
 import useSWR from 'swr'
 import { BASE_URL } from '../common/api.js'
-import { ComponentListResponse } from '../types/response/component.ts'
+import { ActiveComponentListResponse } from '../types/response/component.ts'
 
-const dummyComponentList: ComponentListResponse[] = [
+const dummyComponentList: ActiveComponentListResponse[] = [
   {
     id: 1,
     name: 'name',
     description: 'desc',
     status: 'NONE',
-    frequency: 50,
-    isActive: true,
   },
   {
     id: 2,
     name: 'name',
     description: 'desc',
     status: 'NONE',
-    frequency: 50,
-    isActive: true,
   },
 ]
 
-const useComponentList = ({ siteId }: { siteId?: string }) => {
+const useActiveComponentList = ({ siteId }: { siteId?: string }) => {
   const fetcher = (...args) => fetch(...args).then((res) => res.json())
-  const { data, error, isLoading } = useSWR(`${BASE_URL}/sites/${siteId}/components`, fetcher)
+  const { data, error, isLoading } = useSWR(`${BASE_URL}/sites/${siteId}/components/active`, fetcher)
   // return {
   //   data: dummyComponentList,
   //   error: false,
@@ -31,10 +27,10 @@ const useComponentList = ({ siteId }: { siteId?: string }) => {
   // }
 
   return {
-    data: data?.componentResponseDtoList,
+    data: data?.componentActiveResponseDtoList,
     error,
     isLoading,
   }
 }
 
-export default useComponentList
+export default useActiveComponentList
