@@ -12,6 +12,7 @@ export default function SiteDetail() {
 
   return (
     <>
+      <h2 className="font-bold text-2xl mb-4">컴포넌트 리스트</h2>
       <div className="overflow-x-auto min-h-full rounded-md">
         <table className="table">
           <thead className="bg-primary text-black">
@@ -23,7 +24,11 @@ export default function SiteDetail() {
             </tr>
           </thead>
           <tbody className="rounded-md">
-            {data.length === 0 && <tr> 컴포넌트가 아직 없어요 </tr>}
+            {data.length === 0 && (
+              <tr>
+                <td className="py-5">컴포넌트가 없어요. 등록해주세요 🎇</td>
+              </tr>
+            )}
             {data.map((component) => (
               <tr className="bg-secondary text-black" key={component.id}>
                 <td>{component.id}</td>
