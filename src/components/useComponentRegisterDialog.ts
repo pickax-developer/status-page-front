@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import postComponent from '../useCases/postComponent.ts'
  import { toast } from 'react-toastify'
+import useSWR, { mutate } from 'swr'
+import { BASE_URL } from '../common/api.js'
 
 const useComponentRegisterDialog = ({ siteId }: { siteId: string }) => {
   const DEFAULT_FREQUENCY = 1800
@@ -13,9 +15,14 @@ const useComponentRegisterDialog = ({ siteId }: { siteId: string }) => {
 
   const [isDisabledConfirmBtn, setIsDisabledConfirmBtn] = useState<boolean>(true)
 
-  const onCloseModal = () => {
+  const clear = () => {
     setDescription('')
     setName('')
+    setFrequency(DEFAULT_FREQUENCY)
+    setIsActive(false)
+  }
+  const onCloseModal = () => {
+    clear()
     ;(document.getElementById('component_register_dialog') as HTMLDialogElement)?.close()
   }
 
@@ -26,6 +33,10 @@ const useComponentRegisterDialog = ({ siteId }: { siteId: string }) => {
   const onClickConfirmButton = async () => {
     try {
       const res = await postComponent({ siteId, name, description, frequency, isActive })
+      ;(document.getElementById('component_register_dialog') as HTMLDialogElement)?.close()
+      clear()
+
+      mutate(`${BASE_URL}/sites/${siteId}/components/active`)
     } catch {
       toast('컴포넌트 등록에 실패했습니다. 다시 시도해주세요.')
     }
