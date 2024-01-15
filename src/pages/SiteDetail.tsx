@@ -7,7 +7,7 @@ export default function SiteDetail() {
   const { siteId } = useParams<{ siteId: string }>()
   const { data, error, isLoading } = useComponentList({ siteId })
 
-  if (error) return <div>failed to load</div>
+  if (error || !data) return <div>failed to load</div>
   if (isLoading) return <div>loading...</div>
 
   return (
@@ -20,6 +20,8 @@ export default function SiteDetail() {
               <th>이름</th>
               <th>설명</th>
               <th>상태</th>
+              <th>활성화 여부</th>
+              <th>체크 빈도(초)</th>
             </tr>
           </thead>
           <tbody className="rounded-md">
@@ -32,6 +34,12 @@ export default function SiteDetail() {
                 <td>
                   <div className="badge badge-primary badge-outline">{component.status}</div>
                 </td>
+                <td>
+                  <div className={`badge ${component.isActive ? 'badge-primary' : 'badge-secondary'} badge-outline`}>
+                    {component.isActive ? 'TRUE' : 'FALSE'}
+                  </div>
+                </td>
+                <td>{component.frequency}</td>
               </tr>
             ))}
           </tbody>

@@ -27,17 +27,17 @@ const useComponentList = ({ siteId }: { siteId?: string }) => {
     `${BASE_URL}/sites/${siteId}/components`,
     fetcher,
   )
-  // return {
-  //   data: dummyComponentList,
-  //   error: false,
-  //   isLoading: false,
-  // }
-
   return {
-    data: data?.componentResponseDtoList,
-    error,
-    isLoading,
+    data: dummyComponentList,
+    error: false,
+    isLoading: false,
   }
+
+  // return {
+  //   data: data?.componentResponseDtoList,
+  //   error,
+  //   isLoading,
+  // }
 }
 
 export default useComponentList
