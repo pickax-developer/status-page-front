@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import SiteRegisterDialog from '../components/SiteRegisterDialog.tsx'
 import getUserList from '../useCases/siteList.ts'
@@ -6,6 +6,7 @@ import { OwnerProofStatus } from '../types/response/site.ts'
 
 const SiteList = () => {
   const { data, error, isLoading } = getUserList()
+  const [registerCheckNumber, setRegisterCheckNumber] = useState<number>(0)
   const [currentSiteId, setCurrentSiteId] = React.useState<number | undefined>(undefined)
   if (error) return <div>failed to load</div>
   if (isLoading) return <div>loading...</div>
@@ -39,6 +40,7 @@ const SiteList = () => {
                       className="btn btn-primary"
                       onClick={() => {
                         setCurrentSiteId(site.id)
+                        setRegisterCheckNumber(registerCheckNumber + 1)
                         ;(document.getElementById('site_register_dialog') as HTMLDialogElement)?.showModal()
                       }}
                     >
@@ -53,7 +55,7 @@ const SiteList = () => {
           </tbody>
         </table>
       </div>
-      <SiteRegisterDialog id={currentSiteId} />
+      <SiteRegisterDialog id={currentSiteId} registerCheckNumber={registerCheckNumber} />
     </>
   )
 }

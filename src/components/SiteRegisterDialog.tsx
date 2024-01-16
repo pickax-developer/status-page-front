@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import useSiteRegisterDialog from './useSiteRegisterDialog.ts'
+import { mutate } from 'swr'
+import { BASE_URL } from '../common/api.js'
 
-
-const SiteRegisterDialog = ({ id }: { id?: number }) => {
+const SiteRegisterDialog = ({ id, registerCheckNumber }: { id?: number; registerCheckNumber: number }) => {
   const {
     metaTag,
     name,
@@ -18,7 +19,9 @@ const SiteRegisterDialog = ({ id }: { id?: number }) => {
     setStep,
     onCloseModal,
     isDisabledNextBtn,
-  } = useSiteRegisterDialog({ id: id ? id : undefined })
+  } = useSiteRegisterDialog({ id: id ? id : undefined, registerCheckNumber })
+
+
 
   if (!metaTag || step === 1)
     return (
@@ -103,14 +106,6 @@ const SiteRegisterDialog = ({ id }: { id?: number }) => {
             </button>
           </div>
           <div className="flex pt-4 gap-3 justify-end">
-            <button
-              className="btn"
-              onClick={() => {
-                setStep(1)
-              }}
-            >
-              뒤로
-            </button>
             <button onClick={() => onClickCheckButton()} className="btn btn-primary" type="button">
               확인
             </button>
@@ -132,6 +127,7 @@ const SiteRegisterDialog = ({ id }: { id?: number }) => {
             className="btn"
             onClick={() => {
               onCloseModal()
+              mutate(`${BASE_URL}/sites`)
             }}
           >
             완료
@@ -153,6 +149,7 @@ const SiteRegisterDialog = ({ id }: { id?: number }) => {
               className="btn"
               onClick={() => {
                 onCloseModal()
+                mutate(`${BASE_URL}/sites`)
               }}
             >
               닫기
