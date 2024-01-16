@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import postSite from '../useCases/postSite.ts'
 import siteCheck from '../useCases/siteCheck.ts'
 import { isValidURL } from '../utils/validation.ts'
 import siteMetaTag from '../useCases/siteMetaTag.ts'
- import { toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 
-const useSiteRegisterDialog = ({ id }: { id?: number }) => {
+const useSiteRegisterDialog = ({ id, registerCheckNumber }: { id?: number; registerCheckNumber: number }) => {
   const [name, setName] = useState<string>('')
   const [url, setUrl] = useState<string>('')
   const [description, setDescription] = useState<string>('')
@@ -13,6 +13,7 @@ const useSiteRegisterDialog = ({ id }: { id?: number }) => {
   const [metaTag, setMetaTag] = useState<string>('')
   const [step, setStep] = useState<number>(1)
   const [isDisabledNextBtn, setIsDisabledNextBtn] = useState<boolean>(true)
+  const [, updateState] = useState<Object>()
 
   const onClickNextButton = async () => {
     try {
@@ -69,7 +70,7 @@ const useSiteRegisterDialog = ({ id }: { id?: number }) => {
       setSiteId(id)
       fetchData()
     }
-  }, [id])
+  }, [id, registerCheckNumber])
 
   return {
     name,
