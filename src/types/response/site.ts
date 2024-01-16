@@ -21,5 +21,6 @@ export interface SiteMetaTagResponse {
 }
 
 export interface SiteSecretKeyResponse {
-  key: string
+  secretKey: string
 }
+

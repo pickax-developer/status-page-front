@@ -4,10 +4,10 @@ const useSecretKeyDialog = ({ siteId }: { siteId?: number }) => {
   const { data, error, isLoading } = useSiteSecretKey({ siteId })
 
   const copySecretKey = () => {
-    navigator.clipboard.writeText(data)
+    navigator.clipboard.writeText(data ? data.secretKey : '')
   }
   return {
-    data,
+    data: data ? data.secretKey : '',
     copySecretKey,
     error,
     isLoading,

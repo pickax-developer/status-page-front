@@ -11,7 +11,7 @@ const SecretKeyDialog = ({ siteId }: { siteId?: number }) => {
     <dialog id="site-secret-key-modal" className="modal">
       <div className="modal-box">
         <h3 className="font-bold text-lg">Secret Key</h3>
-        <p className="py-4">노출되지 않게 잘 관리하세요 ~~ </p>
+        <p className="py-4">노출되지 않게 관리해주세요.</p>
         <div className='flex gap-3'>
           <input className="bg-gray-100 p-2 rounded-sm w-full" type="text" disabled value={data} />
           <button className="btn btn-outline" onClick={() => copySecretKey()}>
