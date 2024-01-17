@@ -20,7 +20,7 @@ const SecretKeyDialog = ({ siteId }: { siteId?: number }) => {
         </div>
         <div className="modal-action">
           <form method="dialog">
-            <button className="btn">Close</button>
+            <button className="btn">닫기</button>
           </form>
         </div>
       </div>
