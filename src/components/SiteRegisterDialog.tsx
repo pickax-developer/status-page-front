@@ -19,6 +19,7 @@ const SiteRegisterDialog = ({ id, registerCheckNumber }: { id?: number; register
     setStep,
     onCloseModal,
     isDisabledNextBtn,
+    errorMessage
   } = useSiteRegisterDialog({ id: id ? id : undefined, registerCheckNumber })
 
 
@@ -142,7 +143,7 @@ const SiteRegisterDialog = ({ id, registerCheckNumber }: { id?: number; register
         <div className="modal-box">
           <h3 className="text-lg font-bold">사이트 소유권을 확인하지 못했습니다.</h3>
 
-          <p>다시 한번 확인해주시고, 잠시 후 시도해주세요.</p>
+          <p>{errorMessage}</p>
 
           <div className="modal-action">
             <button

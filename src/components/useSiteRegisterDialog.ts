@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import postSite from '../useCases/postSite.ts'
 import siteCheck from '../useCases/siteCheck.ts'
 import { isValidURL } from '../utils/validation.ts'
@@ -13,7 +13,7 @@ const useSiteRegisterDialog = ({ id, registerCheckNumber }: { id?: number; regis
   const [metaTag, setMetaTag] = useState<string>('')
   const [step, setStep] = useState<number>(1)
   const [isDisabledNextBtn, setIsDisabledNextBtn] = useState<boolean>(true)
-  const [, updateState] = useState<Object>()
+  const [errorMessage, setErrorMessage] = useState<string>('')
 
   const onClickNextButton = async () => {
     try {
@@ -30,7 +30,15 @@ const useSiteRegisterDialog = ({ id, registerCheckNumber }: { id?: number; regis
     try {
       await siteCheck({ id: siteId })
       setStep(3)
-    } catch {
+    } catch (e) {
+      switch (e?.response?.data?.customError) {
+        case 'INVALID_SITE_URL':
+          setErrorMessage('사이트 정보를 찾을 수 없습니다.')
+          break
+        default:
+          setErrorMessage('조금 뒤에 다시 시도해주세요.')
+      }
+
       setStep(4)
     }
   }
@@ -87,6 +95,7 @@ const useSiteRegisterDialog = ({ id, registerCheckNumber }: { id?: number; regis
     setStep,
     onCloseModal,
     isDisabledNextBtn,
+    errorMessage,
   }
 }
 
