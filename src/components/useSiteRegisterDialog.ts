@@ -31,7 +31,6 @@ const useSiteRegisterDialog = ({ id, registerCheckNumber }: { id?: number; regis
       await siteCheck({ id: siteId })
       setStep(3)
     } catch (e) {
-      console.log(e?.response?.data?.customError)
       switch (e?.response?.data?.customError) {
         case 'INVALID_SITE_URL':
           setErrorMessage('사이트 정보를 찾을 수 없습니다.')
