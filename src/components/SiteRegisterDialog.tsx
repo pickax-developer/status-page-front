@@ -107,6 +107,14 @@ const SiteRegisterDialog = ({ id, registerCheckNumber }: { id?: number; register
             </button>
           </div>
           <div className="flex pt-4 gap-3 justify-end">
+            <button
+              className="btn"
+              onClick={() => {
+                onCloseModal()
+              }}
+            >
+              닫기
+            </button>
             <button onClick={() => onClickCheckButton()} className="btn btn-primary" type="button">
               확인
             </button>
