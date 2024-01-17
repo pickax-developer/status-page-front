@@ -74,7 +74,7 @@ const ComponentRegisterDialog = ({ siteId }: { siteId?: string }) => {
           </label>
           <div className="modal-action">
             <button className="btn" type="button" onClick={() => onCloseModal()}>
-              Close
+              닫기
             </button>
             <button
               disabled={isDisabledConfirmBtn}

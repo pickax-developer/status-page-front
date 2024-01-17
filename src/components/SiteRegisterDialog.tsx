@@ -111,6 +111,7 @@ const SiteRegisterDialog = ({ id, registerCheckNumber }: { id?: number; register
               className="btn"
               onClick={() => {
                 onCloseModal()
+                mutate(`${BASE_URL}/sites`)
               }}
             >
               닫기

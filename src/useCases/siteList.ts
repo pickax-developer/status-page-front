@@ -25,7 +25,7 @@ const dummySiteList: SiteListResponse[] = [
 
 const useSiteList = () => {
   const fetcher = (...args) => fetch(...args).then((res) => res.json())
-  const { data, error, isLoading } = useSWR(`${BASE_URL}/sites`, fetcher)
+  const { data, error, isLoading } = useSWR<SiteListResponse[], Error>(`${BASE_URL}/sites`, fetcher)
   // return {
   //   data: dummySiteList,
   //   error: false,

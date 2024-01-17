@@ -19,3 +19,8 @@ export interface SiteMetaTagResponse {
   id: number
   content: string
 }
+
+export interface SiteSecretKeyResponse {
+  secretKey: string
+}
+
