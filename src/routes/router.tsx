@@ -9,6 +9,10 @@ import SiteStatus from '../pages/SiteStatus.tsx'
 
 const router = createBrowserRouter([
   {
+    path: '/status/:siteId',
+    element: <SiteStatus />,
+  },
+  {
     path: '/',
     element: <Layout />,
     children: [
@@ -19,10 +23,6 @@ const router = createBrowserRouter([
       {
         path: '/:siteId',
         element: <SiteDetail />,
-      },
-      {
-        path: '/status/:siteId',
-        element: <SiteStatus />,
       },
       {
         path: 'login',
