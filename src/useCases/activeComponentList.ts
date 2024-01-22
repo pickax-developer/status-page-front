@@ -17,11 +17,14 @@ const dummyComponentList: ActiveComponentListResponse[] = [
   },
 ]
 
+const REFRESH_INTERVAL = 1
+
 const useActiveComponentList = ({ siteId }: { siteId?: string }) => {
   const fetcher = (...args) => fetch(...args).then((res) => res.json())
   const { data, error, isLoading } = useSWR<{ componentActiveResponseDtoList: ActiveComponentListResponse[] }, Error>(
     `${BASE_URL}/sites/${siteId}/components/active`,
     fetcher,
+    { refreshInterval: REFRESH_INTERVAL },
   )
   // return {
   //   data: dummyComponentList,
