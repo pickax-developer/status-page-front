@@ -2,22 +2,8 @@ import useSWR from 'swr'
 import { BASE_URL } from '../common/api.js'
 import { ActiveComponentListResponse } from '../types/response/component.ts'
 
-const dummyComponentList: ActiveComponentListResponse[] = [
-  {
-    id: 1,
-    name: 'name',
-    description: 'desc',
-    status: 'NONE',
-  },
-  {
-    id: 2,
-    name: 'name',
-    description: 'desc',
-    status: 'NONE',
-  },
-]
 
-const REFRESH_INTERVAL = 1
+const REFRESH_INTERVAL = 60
 
 const useActiveComponentList = ({ siteId }: { siteId?: string }) => {
   const fetcher = (...args) => fetch(...args).then((res) => res.json())
@@ -26,15 +12,10 @@ const useActiveComponentList = ({ siteId }: { siteId?: string }) => {
     fetcher,
     { refreshInterval: REFRESH_INTERVAL },
   )
-  // return {
-  //   data: dummyComponentList,
-  //   error: false,
-  //   isLoading: false,
-  // }
 
   return {
     data: data?.componentActiveResponseDtoList,
-    isSiteOkay :data?.componentActiveResponseDtoList.every((component) => component.status === 'OK'),
+    isSiteOkay: data?.componentActiveResponseDtoList.every((component) => component.status === 'OK'),
     error,
     isLoading,
   }
