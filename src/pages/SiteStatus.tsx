@@ -1,7 +1,14 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import useActiveComponentList from '../useCases/activeComponentList.ts'
-import { BsCheckCircleFill, BsEmojiFrown, BsEmojiSmileFill, BsEmojiFrownFill, BsEmojiDizzyFill } from 'react-icons/bs'
+import {
+  BsCheckCircleFill,
+  BsEmojiFrown,
+  BsEmojiSmileFill,
+  BsGithub,
+  BsEmojiFrownFill,
+  BsEmojiDizzyFill,
+} from 'react-icons/bs'
 import { ComponentStatus } from '../types/response/site.ts'
 
 const SiteStatus = () => {
@@ -11,9 +18,9 @@ const SiteStatus = () => {
   const DUMMY_SITE_NAME = '서인 블로그'
   const setStatusIcon = (status: ComponentStatus) => {
     switch (status) {
-      case "OK":
+      case 'OK':
         return <BsEmojiSmileFill className="inline-block text-green-500" size="20" />
-      case "WARNING":
+      case 'WARNING':
         return <BsEmojiFrownFill className="inline-block text-yellow-500" size="20" />
       default:
         return <BsEmojiDizzyFill className="inline-block text-red-500" size="20" />
@@ -76,7 +83,9 @@ const SiteStatus = () => {
       </main>
       <footer className="flex justify-between bg-secondary px-6 py-6 mt-10">
         <p>© 2023 곡괭이 개발자</p>
-        <i>깃허브</i>
+        <a href="https://github.com/pickax-developer" target="_blank" rel="noreferrer">
+          <BsGithub />
+        </a>
       </footer>
     </>
   )
