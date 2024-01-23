@@ -5,6 +5,8 @@ import { BsEmojiSmileFill, BsGithub, BsEmojiFrownFill, BsEmojiDizzyFill } from '
 import { ComponentStatus } from '../types/response/site.ts'
 import useSiteLDetail from '../useCases/siteDetail.ts'
 
+const DUMMY_UPDATED_AT = '2024.01.23. PM 10:31'
+
 const SiteStatus = () => {
   const { siteId } = useParams<{ siteId: string }>()
   const site = useSiteLDetail({ siteId })
@@ -26,7 +28,7 @@ const SiteStatus = () => {
 
   return (
     <>
-      <header className="pt-6 pb-6 px-14 fixed z-10 top-0 w-[100%] bg-tertiary">
+      <header className="pt-6 pb-6 px-14 fixed z-10 top-0 w-[100%] bg-white">
         <h1>
           <strong className="text-3xl border-r pr-2 border-white">{site.data?.name}</strong>{' '}
           <span className="text-3xl pl-2"> Status</span>
@@ -48,6 +50,7 @@ const SiteStatus = () => {
           </p>
         </div>
         <div className="overflow-x-auto mt-20">
+          <p className="pb-5 text-right">최종 확인 시각 : {DUMMY_UPDATED_AT} (한국 시각 기준)</p>
           <div className="border bg-secondary px-5 py-7">
             <strong>현재 서비스 상태</strong>
             <ul className="flex gap-10 mt-3">
