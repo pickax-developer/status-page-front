@@ -34,6 +34,7 @@ const useActiveComponentList = ({ siteId }: { siteId?: string }) => {
 
   return {
     data: data?.componentActiveResponseDtoList,
+    isSiteOkay :data?.componentActiveResponseDtoList.every((component) => component.status === 'OK'),
     error,
     isLoading,
   }

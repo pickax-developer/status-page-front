@@ -24,3 +24,8 @@ export interface SiteSecretKeyResponse {
   secretKey: string
 }
 
+export enum ComponentStatus {
+  ERROR = 'ERROR',
+  OK = 'OK',
+  WARNING = 'WARNING',
+}
