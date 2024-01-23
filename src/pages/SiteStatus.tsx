@@ -1,37 +1,34 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import useActiveComponentList from '../useCases/activeComponentList.ts'
-import {
-  BsCheckCircleFill,
-  BsEmojiFrown,
-  BsEmojiSmileFill,
-  BsGithub,
-  BsEmojiFrownFill,
-  BsEmojiDizzyFill,
-} from 'react-icons/bs'
+import { BsEmojiSmileFill, BsGithub, BsEmojiFrownFill, BsEmojiDizzyFill } from 'react-icons/bs'
 import { ComponentStatus } from '../types/response/site.ts'
+import useSiteLDetail from '../useCases/siteDetail.ts'
 
 const SiteStatus = () => {
   const { siteId } = useParams<{ siteId: string }>()
+  const site = useSiteLDetail({ siteId })
   const { data, error, isLoading, isSiteOkay } = useActiveComponentList({ siteId })
 
-  const DUMMY_SITE_NAME = '서인 블로그'
   const setStatusIcon = (status: ComponentStatus) => {
     switch (status) {
       case 'OK':
-        return <BsEmojiSmileFill className="inline-block text-green-500" size="20" />
+        return <BsEmojiSmileFill className="inline-block text-green-500" size="30" />
       case 'WARNING':
-        return <BsEmojiFrownFill className="inline-block text-yellow-500" size="20" />
+        return <BsEmojiFrownFill className="inline-block text-yellow-500" size="30" />
       default:
-        return <BsEmojiDizzyFill className="inline-block text-red-500" size="20" />
+        return <BsEmojiDizzyFill className="inline-block text-red-500" size="30" />
     }
   }
+
+  if (isLoading || site.isLoading) return '로딩 중입니다.'
+  if (error) return '에러가 발생했습니다. 조금 뒤에 다시 시도해주세요.'
 
   return (
     <>
       <header className="pt-6 pb-6 px-14 fixed z-10 top-0 w-[100%] bg-tertiary">
         <h1>
-          <strong className="text-3xl border-r pr-2 border-white">{DUMMY_SITE_NAME}</strong>{' '}
+          <strong className="text-3xl border-r pr-2 border-white">{site.data?.name}</strong>{' '}
           <span className="text-3xl pl-2"> Status</span>
         </h1>
       </header>
@@ -46,7 +43,7 @@ const SiteStatus = () => {
             )}
           </div>
           <p className="pt-10 text-5xl font-bold">
-            {DUMMY_SITE_NAME}
+            {site.data?.name}
             {!!isSiteOkay ? '은/는 정상 동작하고 있습니다.' : '에 이상이 있습니다.'}
           </p>
         </div>
@@ -55,15 +52,15 @@ const SiteStatus = () => {
             <strong>현재 서비스 상태</strong>
             <ul className="flex gap-10 mt-3">
               <li className="flex items-center gap-2">
-                <BsEmojiSmileFill className="inline-block text-green-500" size="20" />
+                <BsEmojiSmileFill className="inline-block text-green-500" size="30" />
                 <span>정상</span>
               </li>
               <li className="flex items-center gap-2">
-                <BsEmojiFrownFill className="inline-block text-yellow-500" size="20" />
+                <BsEmojiFrownFill className="inline-block text-yellow-500" size="30" />
                 <span>주의</span>
               </li>
               <li className="flex items-center gap-2">
-                <BsEmojiDizzyFill className="inline-block text-red-500" size="20" />
+                <BsEmojiDizzyFill className="inline-block text-red-500" size="30" />
                 <span>경고</span>
               </li>
             </ul>

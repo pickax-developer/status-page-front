@@ -9,7 +9,13 @@ export interface SiteListResponse {
   url: string
   ownerProofStatus: OwnerProofStatus
 }
-
+export interface SiteDetailResponse {
+  id: number
+  name: string
+  description: string
+  url: string
+  status: OwnerProofStatus
+}
 export interface SitePostResponse {
   metaTag: string
   id:number
