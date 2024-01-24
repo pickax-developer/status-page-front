@@ -48,7 +48,8 @@ const SiteStatus = () => {
         </div>
         <div className="mt-20 overflow-x-auto">
           <p className="pb-5 text-right">
-            최종 업데이트 시각 : {dayjs(data?.updatedAt).format('YYYY년 MM월 DD일 HH시 mm분 ss초')} (한국 시각 기준)
+            최종 업데이트 시각 : {dayjs(data?.lastUpdatedDate).format('YYYY년 MM월 DD일 HH시 mm분 ss초')} (한국 시각
+            기준)
           </p>
           <div className="px-5 border bg-secondary py-7">
             <strong>현재 서비스 상태</strong>

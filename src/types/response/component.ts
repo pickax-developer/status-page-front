@@ -17,5 +17,5 @@ export interface ActiveComponentItem {
 }
 export interface ActiveComponentListResponse {
   componentActiveResponseDtoList: ActiveComponentItem[]
-  updatedAt: string
+  lastUpdatedDate: string
 }
