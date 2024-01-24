@@ -31,7 +31,8 @@ export interface SiteSecretKeyResponse {
 }
 
 export enum ComponentStatus {
-  ERROR = 'ERROR',
-  OK = 'OK',
-  WARNING = 'WARNING',
+  NONE = 'NONE',
+  NO_ISSUES = 'NO_ISSUES',
+  WARN = 'WARN',
+  OUTAGE = 'OUTAGE',
 }

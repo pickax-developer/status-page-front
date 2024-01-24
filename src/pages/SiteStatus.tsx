@@ -9,18 +9,22 @@ import dayjs from 'dayjs'
 const SiteStatus = () => {
   const { siteId } = useParams<{ siteId: string }>()
   const site = useSiteLDetail({ siteId })
-  const { data, error, isLoading, isSiteOkay } = useActiveComponentList({ siteId })
+  const { data, error, isLoading, siteStatus } = useActiveComponentList({ siteId })
 
-  const setStatusIcon = (status: ComponentStatus) => {
+  const setStatusIcon = (status: ComponentStatus, size: string = '30') => {
     switch (status) {
-      case 'OK':
-        return <BsEmojiSmileFill className="inline-block text-green-500" size="30" />
-      case 'WARNING':
-        return <BsEmojiFrownFill className="inline-block text-yellow-500" size="30" />
+      case 'NO_ISSUES':
+        return <BsEmojiSmileFill className="inline-block text-green-500" size={size} />
+      case 'WARN':
+        return <BsEmojiFrownFill className="inline-block text-yellow-500" size={size} />
+      case 'OUTAGE':
+        return <BsEmojiDizzyFill className="inline-block text-red-500" size={size} />
       default:
-        return <BsEmojiDizzyFill className="inline-block text-red-500" size="30" />
+        return <BsEmojiDizzyFill className="inline-block text-gray-500" size={size} />
     }
   }
+
+  const setStatusMessage = (status: ComponentStatus) => {}
 
   if (isLoading || site.isLoading) return '로딩 중입니다.'
   if (error) return '에러가 발생했습니다. 조금 뒤에 다시 시도해주세요.'
@@ -29,23 +33,17 @@ const SiteStatus = () => {
     <>
       <header className="pt-6 pb-6 px-14 fixed z-10 top-0 w-[100%] bg-white">
         <h1>
-          <strong className="pr-2 text-3xl border-r border-white">{site.data?.name}</strong>{' '}
+          <strong className="pr-2 text-3xl border-r-2 border-primary">{site.data?.name}</strong>{' '}
           <span className="pl-2 text-3xl"> Status</span>
         </h1>
       </header>
       <div className="mt-[84px]"></div>
       <main className="px-14">
         <div className="text-center">
-          <div className="pt-20">
-            {!!isSiteOkay ? (
-              <BsEmojiSmileFill className="inline-block text-green-500" size="200" />
-            ) : (
-              <BsEmojiDizzyFill className="inline-block text-red-500" size="200" />
-            )}
-          </div>
+          <div className="pt-20">{setStatusIcon(siteStatus, '200')}</div>
           <p className="pt-10 text-5xl font-bold">
             {site.data?.name}
-            {!!isSiteOkay ? '은/는 정상 동작하고 있습니다.' : '에 이상이 있습니다.'}
+            {siteStatus === ComponentStatus.NO_ISSUES ? '은/는 정상 동작하고 있습니다.' : '에 이상이 있습니다.'}
           </p>
         </div>
         <div className="mt-20 overflow-x-auto">

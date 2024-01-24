@@ -9,7 +9,7 @@ export interface ComponentListResponse {
   isActive: boolean
 }
 
-interface ActiveComponentItem {
+export interface ActiveComponentItem {
   id: number
   name: string
   description?: string
