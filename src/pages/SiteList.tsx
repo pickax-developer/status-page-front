@@ -15,10 +15,10 @@ const SiteList = () => {
 
   return (
     <>
-      <h2 className="font-bold text-2xl mb-4">사이트 리스트</h2>
-      <div className="overflow-x-auto min-h-full rounded-md">
+      <h2 className="mb-4 text-2xl font-bold">사이트 리스트</h2>
+      <div className="min-h-full overflow-x-auto rounded-md">
         <table className="table">
-          <thead className="bg-primary text-black">
+          <thead className="text-black bg-primary">
             <tr>
               <th></th>
               <th>이름</th>
@@ -30,14 +30,22 @@ const SiteList = () => {
           <tbody className="rounded-md">
             {!data || (data.length === 0 && <tr> 없어요 </tr>)}
             {data?.map((site) => (
-              <tr className="bg-secondary text-black" key={site.id}>
+              <tr className="text-black bg-secondary" key={site.id}>
                 <td>
                   <Link to={`/${site.id}`} key={site.id}>
                     {site.id}
                   </Link>
                 </td>
-                <td>{site.name}</td>
-                <td>{site.url}</td>
+                <td>
+                  <Link to={`/${site.id}`} key={site.id}>
+                    {site.name}
+                  </Link>
+                </td>
+                <td>
+                  <Link to={`/${site.id}`} key={site.id}>
+                    {site.url}
+                  </Link>
+                </td>
                 <td>
                   {site.ownerProofStatus === OwnerProofStatus.UNVERIFIED ? (
                     <button
