@@ -9,9 +9,13 @@ export interface ComponentListResponse {
   isActive: boolean
 }
 
-export interface ActiveComponentListResponse {
+interface ActiveComponentItem {
   id: number
   name: string
   description?: string
   status: ComponentStatus
+}
+export interface ActiveComponentListResponse {
+  componentActiveResponseDtoList: ActiveComponentItem[]
+  updatedAt: string
 }

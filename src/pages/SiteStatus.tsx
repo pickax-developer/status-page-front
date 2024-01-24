@@ -4,8 +4,7 @@ import useActiveComponentList from '../useCases/activeComponentList.ts'
 import { BsEmojiSmileFill, BsGithub, BsEmojiFrownFill, BsEmojiDizzyFill } from 'react-icons/bs'
 import { ComponentStatus } from '../types/response/site.ts'
 import useSiteLDetail from '../useCases/siteDetail.ts'
-
-const DUMMY_UPDATED_AT = '2024.01.23. PM 10:31'
+import dayjs from 'dayjs'
 
 const SiteStatus = () => {
   const { siteId } = useParams<{ siteId: string }>()
@@ -30,8 +29,8 @@ const SiteStatus = () => {
     <>
       <header className="pt-6 pb-6 px-14 fixed z-10 top-0 w-[100%] bg-white">
         <h1>
-          <strong className="text-3xl border-r pr-2 border-white">{site.data?.name}</strong>{' '}
-          <span className="text-3xl pl-2"> Status</span>
+          <strong className="pr-2 text-3xl border-r border-white">{site.data?.name}</strong>{' '}
+          <span className="pl-2 text-3xl"> Status</span>
         </h1>
       </header>
       <div className="mt-[84px]"></div>
@@ -49,9 +48,11 @@ const SiteStatus = () => {
             {!!isSiteOkay ? '은/는 정상 동작하고 있습니다.' : '에 이상이 있습니다.'}
           </p>
         </div>
-        <div className="overflow-x-auto mt-20">
-          <p className="pb-5 text-right">최종 확인 시각 : {DUMMY_UPDATED_AT} (한국 시각 기준)</p>
-          <div className="border bg-secondary px-5 py-7">
+        <div className="mt-20 overflow-x-auto">
+          <p className="pb-5 text-right">
+            최종 업데이트 시각 : {dayjs(data?.updatedAt).format('YYYY년 MM월 DD일 HH시 mm분 ss초')} (한국 시각 기준)
+          </p>
+          <div className="px-5 border bg-secondary py-7">
             <strong>현재 서비스 상태</strong>
             <ul className="flex gap-10 mt-3">
               <li className="flex items-center gap-2">
@@ -69,10 +70,10 @@ const SiteStatus = () => {
             </ul>
           </div>
           <ul className="border-x-2 border-secondary">
-            {data?.map((component) => (
+            {data?.componentActiveResponseDtoList.map((component) => (
               <li
                 key={component.id}
-                className="flex flex-row justify-between items-center p-5 border-b-2 border-secondary"
+                className="flex flex-row items-center justify-between p-5 border-b-2 border-secondary"
               >
                 <span>{component.name}</span>
                 <span>{setStatusIcon(component.status)}</span>
@@ -81,7 +82,7 @@ const SiteStatus = () => {
           </ul>
         </div>
       </main>
-      <footer className="flex justify-between bg-secondary px-6 py-6 mt-10">
+      <footer className="flex justify-between px-6 py-6 mt-10 bg-secondary">
         <p>© 2023 곡괭이 개발자</p>
         <a href="https://github.com/pickax-developer" target="_blank" rel="noreferrer">
           <BsGithub />
