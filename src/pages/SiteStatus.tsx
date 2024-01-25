@@ -24,7 +24,6 @@ const SiteStatus = () => {
     }
   }
 
-  const setStatusMessage = (status: ComponentStatus) => {}
 
   if (isLoading || site.isLoading) return '로딩 중입니다.'
   if (error) return '에러가 발생했습니다. 조금 뒤에 다시 시도해주세요.'
@@ -48,7 +47,7 @@ const SiteStatus = () => {
         </div>
         <div className="mt-20 overflow-x-auto">
           <p className="pb-5 text-right">
-            최종 업데이트 시각 : {dayjs(data?.lastUpdatedDate).format('YYYY년 MM월 DD일 HH시 mm분 ss초')} (한국 시각
+            최종 업데이트 시각 : {dayjs(data?.lastUpdatedDate).format('YYYY년 MM월 DD일 HH시 mm분 ss초')} (UTC 시각
             기준)
           </p>
           <div className="px-5 border bg-secondary py-7">
