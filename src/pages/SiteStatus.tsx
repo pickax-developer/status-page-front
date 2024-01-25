@@ -68,7 +68,7 @@ const SiteStatus = () => {
             </ul>
           </div>
           <ul className="border-x-2 border-secondary">
-            {data?.componentActiveResponseDtoList.map((component) => (
+            {data?.componentActiveResponseDtoList?.map((component) => (
               <li
                 key={component.id}
                 className="flex flex-row items-center justify-between p-5 border-b-2 border-secondary"
