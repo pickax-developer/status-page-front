@@ -1,13 +1,14 @@
 import useSWR from 'swr'
 import { BASE_URL } from '../common/api.js'
 import { ComponentListResponse } from '../types/response/component.ts'
+import { ComponentStatus } from '../types/response/site.ts'
 
 const dummyComponentList: ComponentListResponse[] = [
   {
     id: 1,
     name: 'name',
     description: 'desc',
-    status: 'NONE',
+    status: ComponentStatus.NONE,
     frequency: 50,
     isActive: true,
   },
@@ -15,7 +16,7 @@ const dummyComponentList: ComponentListResponse[] = [
     id: 2,
     name: 'name',
     description: 'desc',
-    status: 'NONE',
+    status: ComponentStatus.NONE,
     frequency: 50,
     isActive: true,
   },

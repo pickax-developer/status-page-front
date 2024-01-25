@@ -6,16 +6,25 @@ import ComponentRegisterDialog from '../components/ComponentRegisterDialog.tsx'
 export default function SiteDetail() {
   const { siteId } = useParams<{ siteId: string }>()
   const { data, error, isLoading } = useComponentList({ siteId })
-
   if (error || !data) return <div>failed to load</div>
   if (isLoading) return <div>loading...</div>
 
+  const isSiteRegistered = data.some((component) => component.status !== 'NONE')
+  
   return (
     <>
-      <h2 className="font-bold text-2xl mb-4">컴포넌트 리스트</h2>
-      <div className="overflow-x-auto min-h-full rounded-md">
+      <div className="flex justify-between mb-4">
+        <h2 className="mb-4 text-2xl font-bold">컴포넌트 리스트</h2>
+        {isSiteRegistered && (
+          <a href={`/status/${siteId}`}>
+            <button className="btn btn-primary">사이트 상태 보기</button>
+          </a>
+        )}
+      </div>
+
+      <div className="min-h-full overflow-x-auto rounded-md">
         <table className="table">
-          <thead className="bg-primary text-black">
+          <thead className="text-black bg-primary">
             <tr>
               <th></th>
               <th>이름</th>
@@ -32,7 +41,7 @@ export default function SiteDetail() {
               </tr>
             )}
             {data.map((component) => (
-              <tr className="bg-secondary text-black" key={component.id}>
+              <tr className="text-black bg-secondary" key={component.id}>
                 <td>{component.id}</td>
                 <td>{component.name}</td>
                 <td>{component.description}</td>

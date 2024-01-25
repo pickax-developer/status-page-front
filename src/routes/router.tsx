@@ -5,8 +5,13 @@ import SiteDetail from '../pages/SiteDetail.tsx'
 import Login from '../pages/Login.tsx'
 import ErrorPage from '../pages/Error.tsx'
 import SiteList from '../pages/SiteList.tsx'
+import SiteStatus from '../pages/SiteStatus.tsx'
 
 const router = createBrowserRouter([
+  {
+    path: '/status/:siteId',
+    element: <SiteStatus />,
+  },
   {
     path: '/',
     element: <Layout />,
