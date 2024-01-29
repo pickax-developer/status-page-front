@@ -1,5 +1,6 @@
 import React from 'react'
  import { Formik } from 'formik'
+import { Link } from 'react-router-dom'
  export default function Login() {
    return (
      <div className="h-full">
@@ -11,10 +12,15 @@ import React from 'react'
            validate={(values) => {
              const errors = {}
              if (!values.email) {
-               errors.email = 'Required'
+               errors.email = '이메일을 입력해주세요.'
              } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-               errors.email = 'Invalid email address'
+               errors.email = '이메일 형식이 올바르지 않습니다.'
              }
+
+             if (!values.password) {
+               errors.password = '비밀번호를 입력해주세요.'
+             }
+
              return errors
            }}
            onSubmit={(values, { setSubmitting }) => {
@@ -26,17 +32,25 @@ import React from 'react'
          >
            {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
              <form className="flex flex-col gap-4 mt-5" onSubmit={handleSubmit}>
-               <div>
-                 <div>
+               <div className='mt-10'>
+                 <div className="flex gap-3 mb-2 items-center">
                    <label htmlFor="email">Email</label>
-                   <input type="email" name="email" onChange={handleChange} onBlur={handleBlur} value={values.email} />
+                   <input
+                     className="input input-bordered w-full max-w-xs"
+                     type="email"
+                     name="email"
+                     onChange={handleChange}
+                     onBlur={handleBlur}
+                     value={values.email}
+                   />
                  </div>
-                 {errors.email && touched.email && errors.email}
+                 <p className="text-red-500">{errors.email && touched.email && errors.email}</p>
                </div>
                <div>
-                 <div>
+                 <div className="flex gap-3 mb-2 items-center">
                    <label htmlFor="password">Password</label>
                    <input
+                     className="input input-bordered w-full max-w-xs"
                      type="password"
                      name="password"
                      onChange={handleChange}
@@ -44,14 +58,15 @@ import React from 'react'
                      value={values.password}
                    />
                  </div>
-                 {errors.password && touched.password && errors.password}
+                 <p className="text-red-500">{errors.password && touched.password && errors.password}</p>
                </div>{' '}
                <button type="submit" disabled={isSubmitting} className="btn btn-primary">
-                 Submit
+                 로그인
                </button>
              </form>
            )}
          </Formik>
+         <Link to='/signup' className='mt-4'>계정이 없나요? 회원가입</Link>
        </main>
      </div>
    )
