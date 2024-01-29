@@ -6,11 +6,20 @@ import Login from '../pages/Login.tsx'
 import ErrorPage from '../pages/Error.tsx'
 import SiteList from '../pages/SiteList.tsx'
 import SiteStatus from '../pages/SiteStatus.tsx'
+import SignUp from '../pages/SignUp.tsx'
 
 const router = createBrowserRouter([
   {
     path: '/status/:siteId',
     element: <SiteStatus />,
+  },
+  {
+    path: '/login',
+    element: <Login />,
+  },
+  {
+    path: '/signup',
+    element: <SignUp />,
   },
   {
     path: '/',
@@ -23,10 +32,6 @@ const router = createBrowserRouter([
       {
         path: '/:siteId',
         element: <SiteDetail />,
-      },
-      {
-        path: 'login',
-        element: <Login />,
       },
     ],
     errorElement: <ErrorPage />,
