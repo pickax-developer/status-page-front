@@ -15,7 +15,7 @@ const Stepper = () => {
   }, [activeStepIndex])
 
   return (
-    <ul className="steps">
+    <ul className="steps my-10">
       <li className="step step-primary">이메일 입력</li>
       <li className="step step-primary">이메일 인증</li>
       <li className="step step-primary">비밀번호 입력</li>
