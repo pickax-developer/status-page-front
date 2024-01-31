@@ -26,6 +26,7 @@ export default function Login() {
             return errors
           }}
           onSubmit={(values, { setSubmitting }) => {
+            setSubmitting(true)
             login({ email: values.email, password: values.password })
             setSubmitting(false)
           }}
@@ -60,7 +61,11 @@ export default function Login() {
                 </div>
                 <p className="text-red-500">{errors.password && touched.password && errors.password}</p>
               </div>{' '}
-              <button type="submit" disabled={isSubmitting} className="btn btn-primary">
+              <button
+                type="submit"
+                disabled={isSubmitting || values.email.length === 0 || errors.email || values.password.length === 0}
+                className="btn btn-primary"
+              >
                 로그인
               </button>
             </form>
