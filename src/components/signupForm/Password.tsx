@@ -21,9 +21,9 @@ const Password = () => {
           } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.password)) {
             errors.password = '비밀번호 형식이 올바르지 않습니다.'
           }
-          if (values.passwordConfirm!!== values.password) {
+          if (values.passwordConfirm! !== values.password) {
             errors.passwordConfirm = '비밀번호와 다릅니다.'
-          } 
+          }
 
           return errors
         }}
@@ -38,7 +38,7 @@ const Password = () => {
         }}
       >
         {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
-          <form className="mt-10 flex flex-col justify-center items-center">
+          <form className="mt-10 flex flex-col justify-center items-center" onSubmit={handleSubmit}>
             <div className="w-[100%] flex flex-col items-start mb-2">
               <label className="font-medium text-gray-900">이메일</label>
               <input
@@ -68,6 +68,7 @@ const Password = () => {
               <div className="flex gap-4">
                 <input
                   name="passwordConfirm"
+                  type="password"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.passwordConfirm}

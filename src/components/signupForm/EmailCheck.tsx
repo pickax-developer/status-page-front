@@ -10,16 +10,11 @@ const CheckEmail = () => {
     <>
       <Formik
         initialValues={{
-          email: '',
           code: '',
         }}
         validate={(values) => {
           const errors = {}
-          if (!values.email) {
-            errors.email = '이메일을 입력해주세요.'
-          } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-            errors.email = '이메일 형식이 올바르지 않습니다.'
-          }
+         
           if (!values.code) {
             errors.code = '인증코드를 입력해주세요.'
           } else if (values.code.length !== 6) {
@@ -36,7 +31,7 @@ const CheckEmail = () => {
         }}
       >
         {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
-          <form className="flex flex-col justify-center items-center">
+          <form className="flex flex-col justify-center items-center" onSubmit={handleSubmit}>
             <div className="flex flex-col items-start mb-2 w-[100%]">
               <label className="font-medium text-gray-900">Email</label>
               <input
@@ -44,9 +39,7 @@ const CheckEmail = () => {
                 disabled
                 value={formData.email}
                 className="rounded-md border-2 p-2"
-                placeholder="example@gmail.com"
               />
-              <p className="text-red-500">{errors.email && touched.email && errors.email}</p>
             </div>
             <div className="flex flex-col items-start mb-2">
               <label className="font-medium text-gray-900">인증번호</label>

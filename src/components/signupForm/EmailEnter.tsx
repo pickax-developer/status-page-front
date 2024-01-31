@@ -5,8 +5,6 @@ import { FormContext } from '../../pages/SignUp.tsx'
 const EmailEnter = () => {
   const { activeStepIndex, setActiveStepIndex, formData, setFormData } = useContext(FormContext)
 
-  const renderError = (message) => <p className="italic text-red-600">{message}</p>
-
   return (
     <Formik
       initialValues={{
@@ -30,7 +28,7 @@ const EmailEnter = () => {
       }}
     >
       {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
-        <form className="mt-10 flex flex-col justify-center items-center">
+        <form className="mt-10 flex flex-col justify-center items-center" onSubmit={handleSubmit}>
           <div className="flex flex-col items-start mb-2">
             <label className="font-medium text-gray-900">Email</label>
             <div className="flex gap-4">
