@@ -69,7 +69,7 @@ const SiteList = () => {
                       onClick={() => {
                         setCurrentSiteIdForSecretKey(site.id)
                         const modal = document.getElementById('site-secret-key-modal') as HTMLDialogElement
-                        modal.showModal()
+                        modal?.showModal()
                       }}
                     >
                       확인
