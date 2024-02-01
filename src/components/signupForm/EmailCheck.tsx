@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { Formik } from 'formik'
 import { FormContext } from '../../pages/SignUp.tsx'
 import checkEmailVerificationCode from '../../useCases/checkEmailVerificationCode.ts'
+import { toast } from 'react-toastify'
 
 const CheckEmail = () => {
   const { activeStepIndex, setActiveStepIndex, formData, setFormData } = useContext(FormContext)
@@ -24,15 +25,14 @@ const CheckEmail = () => {
 
           return errors
         }}
-        onSubmit={(values) => {
+        onSubmit={async (values) => {
           const data = { ...formData, ...values }
           setFormData(data)
-          //TODO: 이메일 인증 번호 확인 api 호출
           try {
-            checkEmailVerificationCode({ email: formData.email, code: values.code })
+            await checkEmailVerificationCode({ email: formData.email, code: values.code })
             setActiveStepIndex(activeStepIndex + 1)
           } catch (e) {
-            console.error(e)
+            toast('이메일 인증번호 확인에 실패했습니다.')
           }
         }}
       >

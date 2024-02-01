@@ -27,12 +27,11 @@ const Password = () => {
 
           return errors
         }}
-        onSubmit={(values) => {
+        onSubmit={async (values) => {
           const data = { ...formData, ...values }
           setFormData(data)
           try {
-            console.log('11')
-            signup({ email: formData.email, password: values.password, code: formData.code })
+            await signup({ email: formData.email, password: values.password, code: formData.code })
             setActiveStepIndex(activeStepIndex + 1)
           } catch (e) {
             //TODO: 실패 시 - 에러 경우 별로 toast 메시지를 다르게 보여줄 수 있음
