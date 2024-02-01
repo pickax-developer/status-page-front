@@ -1,10 +1,10 @@
 import { toast } from 'react-toastify'
 import axiosInstance from '../common/axiosInstance.js'
 
-const logout = async ({ email, password }: { email: string; password: string }) => {
+const logout = async () => {
   try {
     const response = await axiosInstance.post(`/logout`)
-  
+
     localStorage.removeItem('accessToken')
     return response.data
   } catch (error) {
