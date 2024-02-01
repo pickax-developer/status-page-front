@@ -6,8 +6,7 @@ const logout = async () => {
   try {
     const response = await axiosInstance.post(`/logout`)
     localStorage.removeItem('accessToken')
-            location.replace('/login')
-
+    location.replace('/login')
 
     return response.data
   } catch (error) {

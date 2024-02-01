@@ -4,7 +4,7 @@ const instance = axios.create({
   baseURL: BASE_URL,
   timeout: 5000,
   headers: {
-    Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
+    Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
   },
 })
 
