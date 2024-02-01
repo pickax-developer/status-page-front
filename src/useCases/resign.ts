@@ -5,6 +5,8 @@ const resign = async ({ password }: { password: string }) => {
     const response = await axiosInstance.post(`/auth/resign`, {
       password,
     })
+    location.replace('/login')
+
     return response.data
   } catch (error) {
     throw error
