@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { Formik } from 'formik'
 import { FormContext } from '../../pages/SignUp.tsx'
 import emailVerification from '../../useCases/emailVerification.ts'
+import { toast } from 'react-toastify'
 
 const EmailEnter = () => {
   const { activeStepIndex, setActiveStepIndex, formData, setFormData } = useContext(FormContext)
@@ -21,14 +22,21 @@ const EmailEnter = () => {
 
         return errors
       }}
-      onSubmit={(values) => {
+      onSubmit={async (values) => {
         const data = { ...formData, ...values }
         setFormData(data)
         try {
-          emailVerification({email:values.email})
+          await emailVerification({ email: values.email })
           setActiveStepIndex(activeStepIndex + 1)
         } catch (e) {
-          console.error(e)
+          switch (e?.response?.customError) {
+            case 'DUPLICATE_USER':
+              toast('이미 가입된 이메일입니다. 다른 이메일로 가입해주세요.')
+              break
+            default:
+              toast('이메일 인증번호 요청에 실패했습니다.')
+              break
+          }
         }
       }}
     >
@@ -45,7 +53,11 @@ const EmailEnter = () => {
                 className="rounded-md border-2 p-2"
                 placeholder="example@gmail.com"
               />
-              <button disabled={isSubmitting} className="rounded-md btn btn-primary text-white" type="submit">
+              <button
+                disabled={isSubmitting || values.email.length === 0 || errors.email}
+                className="rounded-md btn btn-primary text-white"
+                type="submit"
+              >
                 이메일 인증
               </button>
             </div>

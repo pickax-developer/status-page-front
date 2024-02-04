@@ -2,7 +2,7 @@ import axiosInstance from '../common/axiosInstance.js'
 
 const signup = async ({ email, password, code }) => {
   try {
-    const response = await axiosInstance.post(`/signup`, {
+    const response = await axiosInstance.post(`/auth/signup`, {
       email,
       password,
       code,

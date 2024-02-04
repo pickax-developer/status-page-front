@@ -5,6 +5,7 @@ export const FormContext = createContext({})
 import { Link } from 'react-router-dom'
 import Stepper from '../components/Stepper.tsx'
 import SignupStep from '../components/SignupStep.tsx'
+import { ToastContainer } from 'react-toastify'
 export default function Signup() {
   const [activeStepIndex, setActiveStepIndex] = useState(0)
   const [formData, setFormData] = useState({})
@@ -20,6 +21,7 @@ export default function Signup() {
           계정이 있나요? 로그인
         </Link>
       </main>
+      <ToastContainer />
     </div>
   )
 }
