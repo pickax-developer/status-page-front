@@ -16,11 +16,19 @@ const router = createBrowserRouter([
   },
   {
     path: '/login',
-    element: <Login />,
+    element: (
+      <Authorization shouldAuthenticated={false} navigateTo="/">
+        <Login />,
+      </Authorization>
+    ),
   },
   {
     path: '/signup',
-    element: <SignUp />,
+    element: (
+      <Authorization shouldAuthenticated={false} navigateTo="/">
+        <SignUp />
+      </Authorization>
+    ),
   },
   {
     path: '/',
