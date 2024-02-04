@@ -29,7 +29,14 @@ const EmailEnter = () => {
           await emailVerification({ email: values.email })
           setActiveStepIndex(activeStepIndex + 1)
         } catch (e) {
-          toast('이메일 인증번호 요청에 실패했습니다.')
+          switch (e?.response?.customError) {
+            case 'DUPLICATE_USER':
+              toast('이미 가입된 이메일입니다. 다른 이메일로 가입해주세요.')
+              break
+            default:
+              toast('이메일 인증번호 요청에 실패했습니다.')
+              break
+          }
         }
       }}
     >
