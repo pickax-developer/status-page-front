@@ -2,6 +2,7 @@ import useSWR from 'swr'
 import { BASE_URL } from '../common/api.js'
 import { ActiveComponentItem, ActiveComponentListResponse } from '../types/response/component.ts'
 import { ComponentStatus } from '../types/response/site.ts'
+import { fetcher } from '../utils/fetcher.ts'
 
 const REFRESH_INTERVAL = 60
 
@@ -21,7 +22,6 @@ const setSiteStatus = (componentList?: ActiveComponentItem[]): ComponentStatus =
   return status
 }
 const useActiveComponentList = ({ siteId }: { siteId?: string }) => {
-  const fetcher = (...args) => fetch(...args).then((res) => res.json())
   const { data, error, isLoading } = useSWR<ActiveComponentListResponse, Error>(
     `${BASE_URL}/sites/${siteId}/components/active`,
     fetcher,
