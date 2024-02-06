@@ -2,6 +2,7 @@ import useSWR from 'swr'
 import { BASE_URL } from '../common/api.js'
 import { ComponentListResponse } from '../types/response/component.ts'
 import { ComponentStatus } from '../types/response/site.ts'
+import { fetcher } from '../utils/fetcher.ts'
 
 const dummyComponentList: ComponentListResponse[] = [
   {
@@ -23,7 +24,6 @@ const dummyComponentList: ComponentListResponse[] = [
 ]
 
 const useComponentList = ({ siteId }: { siteId?: string }) => {
-  const fetcher = (...args) => fetch(...args).then((res) => res.json())
   const { data, error, isLoading } = useSWR<{ componentResponseDtoList: ComponentListResponse[] }, Error>(
     `${BASE_URL}/sites/${siteId}/components`,
     fetcher,

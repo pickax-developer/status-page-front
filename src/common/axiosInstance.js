@@ -1,12 +1,23 @@
 import axios from 'axios'
 import { BASE_URL } from './api'
+
 const instance = axios.create({
   baseURL: BASE_URL,
   timeout: 5000,
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-  },
 })
+
+instance.interceptors.request.use(
+  function (request) {
+    const accessToken = JSON.parse(localStorage.getItem('accessToken'))?.value
+    if (accessToken) {
+      request.headers = { Authorization: `Bearer ${accessToken}` }
+    }
+    return request
+  },
+  function (error) {
+    return Promise.reject(error)
+  },
+)
 
 instance.interceptors.response.use(
   function (response) {

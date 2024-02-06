@@ -5,6 +5,7 @@ const resign = async ({ password }: { password: string }) => {
     const response = await axiosInstance.post(`/auth/resign`, {
       password,
     })
+    localStorage.removeItem('accessToken')
     location.replace('/login')
 
     return response.data

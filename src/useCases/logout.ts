@@ -4,7 +4,7 @@ import axiosInstance from '../common/axiosInstance.js'
 const logout = async () => {
 
   try {
-    const response = await axiosInstance.post(`/logout`)
+    const response = await axiosInstance.post(`/auth/logout`)
     localStorage.removeItem('accessToken')
     location.replace('/login')
 
