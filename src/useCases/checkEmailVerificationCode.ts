@@ -2,7 +2,7 @@ import axiosInstance from '../common/axiosInstance.js'
 
 const checkEmailVerificationCode = async ({ email, code }) => {
   try {
-    const response = await axiosInstance.post(`/email-verification-code`, {
+    const response = await axiosInstance.post(`/auth/email-verification-code`, {
       email,
       code,
     })
